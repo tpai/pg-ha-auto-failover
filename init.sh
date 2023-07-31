@@ -9,7 +9,7 @@ EOSQL
 
 echo "local   replication   repmgr                              trust" >> "$PGDATA/pg_hba.conf"
 echo "host    replication   repmgr      127.0.0.1/32            trust" >> "$PGDATA/pg_hba.conf"
-echo "host    replication   repmgr      192.168.1.0/24          trust" >> "$PGDATA/pg_hba.conf"
+echo "host    replication   repmgr      192.168.0.0/16          trust" >> "$PGDATA/pg_hba.conf"
 echo "local   repmgr        repmgr                              trust" >> "$PGDATA/pg_hba.conf"
 echo "host    repmgr        repmgr      127.0.0.1/32            trust" >> "$PGDATA/pg_hba.conf"
-echo "host    repmgr        repmgr      192.168.1.0/24          trust" >> "$PGDATA/pg_hba.conf"
+echo "host    repmgr        repmgr      192.168.0.0/16          trust" >> "$PGDATA/pg_hba.conf"

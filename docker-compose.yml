@@ -7,7 +7,15 @@ services:
       POSTGRES_PASSWORD: adminpass
     volumes:
       - ./postgresql.conf:/etc/postgresql/postgresql.conf
-      - ./repmgr.conf:/etc/postgresql/repmgr.conf
+      - ./repmgr1.conf:/etc/postgresql/repmgr.conf
       - ./init.sh:/docker-entrypoint-initdb.d/init.sh
+  db2:
+    build: .
+    command: tail -f /dev/null
+    environment:
+      POSTGRES_PASSWORD: adminpass
+    volumes:
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./repmgr2.conf:/etc/postgresql/repmgr.conf
     ports:
       - "5432:5432"
