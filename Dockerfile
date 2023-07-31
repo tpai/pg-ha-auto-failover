@@ -4,7 +4,7 @@ FROM postgres:13
 RUN apt-get update
 
 # Install repmgr
-RUN apt-get install -y repmgr
+RUN apt-get install -y postgresql-13-repmgr
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

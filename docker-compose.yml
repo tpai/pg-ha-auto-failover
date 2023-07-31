@@ -4,11 +4,10 @@ services:
   db1:
     build: .
     environment:
-      POSTGRES_USER: appuser
-      POSTGRES_PASSWORD: apppass
-      POSTGRES_DB: appdb
+      POSTGRES_PASSWORD: adminpass
     volumes:
       - ./postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./repmgr.conf:/etc/postgresql/repmgr.conf
       - ./init.sh:/docker-entrypoint-initdb.d/init.sh
     ports:
       - "5432:5432"
