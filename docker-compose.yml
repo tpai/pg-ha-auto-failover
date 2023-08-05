@@ -3,19 +3,38 @@ version: '3.8'
 services:
   db1:
     build: .
+    command: ./pg_command.sh master
     environment:
       POSTGRES_PASSWORD: adminpass
     volumes:
+      - pg1_disk:/var/lib/postgresql/data
       - ./postgresql.conf:/etc/postgresql/postgresql.conf
       - ./repmgr1.conf:/etc/postgresql/repmgr.conf
-      - ./init.sh:/docker-entrypoint-initdb.d/init.sh
+      - ./initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
+      - ./repmgr1_init.sh:/var/lib/postgresql/repmgr_init.sh
+      - ./pg_command.sh:/var/lib/postgresql/pg_command.sh
+    networks:
+      pg_network:
+        ipv4_address: 172.16.238.100
   db2:
     build: .
-    command: tail -f /dev/null
-    environment:
-      POSTGRES_PASSWORD: adminpass
+    command: ./pg_command.sh slave
     volumes:
+      - pg2_disk:/var/lib/postgresql/data
       - ./postgresql.conf:/etc/postgresql/postgresql.conf
       - ./repmgr2.conf:/etc/postgresql/repmgr.conf
-    ports:
-      - "5432:5432"
+      - ./repmgr2_init.sh:/var/lib/postgresql/repmgr_init.sh
+      - ./pg_command.sh:/var/lib/postgresql/pg_command.sh
+    networks:
+      pg_network:
+        ipv4_address: 172.16.238.101
+volumes:
+  pg1_disk:
+  pg2_disk:
+
+networks:
+  pg_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
