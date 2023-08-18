@@ -27,7 +27,7 @@ INSERT INTO Employees (EmployeeID, FirstName, LastName, Department)
 VALUES (1, 'John', 'Doe', 'Sales');"
 
 echo ">>> start db1 instance and rejoin to repmgr"
-docker-compose up db1 -d
+docker-compose up -d -- db1
 
 while true; do
     echo "Connecting db1:5432..."
@@ -68,7 +68,7 @@ INSERT INTO Employees (EmployeeID, FirstName, LastName, Department)
 VALUES (2, 'Jane', 'Smith', 'Marketing');"
 
 echo ">>> start db2 instance and rejoin to repmgr"
-docker-compose up db2 -d
+docker-compose up -d -- db2
 
 while true; do
     echo "Connecting db2:5432..."
