@@ -48,6 +48,8 @@ echo ">>>> select value from db1"
 docker-compose exec db1 psql -c " \
 SELECT * FROM Employees;"
 
+read -p "Press any key to switch back..."
+
 echo "################### Switchover(db2) ###################-"
 
 docker-compose exec db2 repmgr -f /etc/postgresql/repmgr.conf cluster show
