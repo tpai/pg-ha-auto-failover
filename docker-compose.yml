@@ -11,7 +11,6 @@ services:
       - ./postgresql.conf:/etc/postgresql/postgresql.conf
       - ./repmgr1.conf:/etc/postgresql/repmgr.conf
       - ./initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
-      - ./repmgr1_init.sh:/var/lib/postgresql/repmgr_init.sh
       - ./pg_command.sh:/var/lib/postgresql/pg_command.sh
     networks:
       pg_network:
@@ -23,11 +22,11 @@ services:
       - pg2_disk:/var/lib/postgresql/data
       - ./postgresql.conf:/etc/postgresql/postgresql.conf
       - ./repmgr2.conf:/etc/postgresql/repmgr.conf
-      - ./repmgr2_init.sh:/var/lib/postgresql/repmgr_init.sh
       - ./pg_command.sh:/var/lib/postgresql/pg_command.sh
     networks:
       pg_network:
         ipv4_address: 172.16.238.101
+
 volumes:
   pg1_disk:
   pg2_disk:
