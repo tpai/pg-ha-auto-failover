@@ -21,3 +21,5 @@ done
 
 docker-compose exec -d db1 repmgrd -f /etc/postgresql/repmgr.conf --daemonize=false
 docker-compose exec -d db2 repmgrd -f /etc/postgresql/repmgr.conf --daemonize=false
+
+docker-compose up -d -- pgpool

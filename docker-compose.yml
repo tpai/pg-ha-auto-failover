@@ -26,6 +26,20 @@ services:
     networks:
       pg_network:
         ipv4_address: 172.16.238.101
+  pgpool:
+    image: pgpool/pgpool:4.4.2
+    environment:
+      PGPOOL_PCP_USER: pcpuser
+      PGPOOL_PCP_PASSWORD: pcppass
+    volumes:
+      - ./pgpool.conf:/config/pgpool.conf
+      - ./pool_start.sh:/opt/pgpool-II/bin/start.sh
+    ports:
+      - "9999:9999"
+      - "9898:9898"
+    networks:
+      pg_network:
+        ipv4_address: 172.16.238.102
 
 volumes:
   pg1_disk:
