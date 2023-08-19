@@ -41,3 +41,8 @@ Q: Why does the sequence ID become discontinuous after failover?
 
 A: Changes to sequences are logged to the Write-Ahead Log (WAL) to allow recovery from a backup or after a crash. However, to optimize performance, not every call to `nextval` is logged to the WAL. This means that after recovering from a crash, the sequence may have skipped some values, resulting in gaps in the sequence.
 > Ref: https://stackoverflow.com/a/70958356
+
+Q: What will happen if I don't specify the `wal_keep_size` in postgresql.conf?
+
+A: It means the system will not preserve any extra WAL files for standby purposes. You may encounter a WAL file missing error during the `--force-rewind` process. It is better to specify a value based on the downtime period. `128MB` should be enough for a short period of downtime.
+> Ref: https://www.postgresql.org/docs/13/release-13.html

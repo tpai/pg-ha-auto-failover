@@ -1,7 +1,7 @@
 #!/bin/bash
 
-docker-compose up db1 -d
-docker-compose up db2 -d
+docker-compose up -d -- db1
+docker-compose up -d -- db2
 
 while true; do
     echo "Connecting db1:5432..."
