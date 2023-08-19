@@ -35,7 +35,7 @@ while true; do
     if [ $? -eq 0 ]; then
         echo "done"
         docker-compose exec db1 pg_ctl -w -D /var/lib/postgresql/data -o '-c config_file=/etc/postgresql/postgresql.conf' stop
-        docker-compose exec -e PGPASSWORD=repmgr db1 repmgr -h db2 -U repmgr -d repmgr -f /etc/postgresql/repmgr.conf node rejoin --force-rewind
+        docker-compose exec -e PGPASSWORD=repmgr db1 repmgr -W -h db2 -U repmgr -d repmgr -f /etc/postgresql/repmgr.conf node rejoin --force-rewind
         docker-compose exec db1 pg_ctl -w -D /var/lib/postgresql/data -o '-c config_file=/etc/postgresql/postgresql.conf' restart
         break
     fi
@@ -76,7 +76,7 @@ while true; do
     if [ $? -eq 0 ]; then
         echo "done"
         docker-compose exec db2 pg_ctl -w -D /var/lib/postgresql/data -o '-c config_file=/etc/postgresql/postgresql.conf' stop
-        docker-compose exec -e PGPASSWORD=repmgr db2 repmgr -h db1 -U repmgr -d repmgr -f /etc/postgresql/repmgr.conf node rejoin --force-rewind
+        docker-compose exec -e PGPASSWORD=repmgr db2 repmgr -W -h db1 -U repmgr -d repmgr -f /etc/postgresql/repmgr.conf node rejoin --force-rewind
         docker-compose exec db2 pg_ctl -w -D /var/lib/postgresql/data -o '-c config_file=/etc/postgresql/postgresql.conf' restart
         break
     fi
