@@ -29,9 +29,9 @@ docker-compose down --remove-orphans -v
 
 ## FAQ
 
-Q: How can I use a shell script to launch the Postgres database?
+Q: How can I use `docker-entrypoint.sh` to launch the Postgres database?
 
-A: You can use the following command in your shell script to launch the Postgres database:
+A: You can use the following command:
 ```sh
 exec docker-entrypoint.sh postgres -D /var/lib/postgresql/data -c config_file=/etc/postgresql/postgresql.conf
 ```
