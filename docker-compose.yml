@@ -3,7 +3,7 @@ version: '3.8'
 services:
   db1:
     build: .
-    command: ./pg_command.sh master
+    command: ./pg_command.sh primary
     environment:
       POSTGRES_PASSWORD: adminpass
     volumes:
@@ -17,7 +17,7 @@ services:
         ipv4_address: 172.16.238.100
   db2:
     build: .
-    command: ./pg_command.sh slave
+    command: ./pg_command.sh secondary
     volumes:
       - pg2_disk:/var/lib/postgresql/data
       - ./postgresql.conf:/etc/postgresql/postgresql.conf

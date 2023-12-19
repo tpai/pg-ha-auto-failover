@@ -3,10 +3,10 @@
 set -e
 
 if [ ! -f "$PGDATA/pg_hba.conf" ]; then
-  if [ "$1" = "master" ]; then
+  if [ "$1" = "primary" ]; then
     exec docker-entrypoint.sh postgres -D /var/lib/postgresql/data -c config_file=/etc/postgresql/postgresql.conf
   fi
-  if [ "$1" = "slave" ]; then
+  if [ "$1" = "secondary" ]; then
     tail -f /dev/null
   fi
 else
